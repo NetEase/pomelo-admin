@@ -3,6 +3,7 @@ var consoleService = require('./lib/consoleService');
 
 module.exports.createMasterConsole = consoleService.createMasterConsole;
 module.exports.createMonitorConsole = consoleService.createMonitorConsole;
+module.exports.adminClient = require('./lib/client/client');
 
 exports.modules = {};
 fs.readdirSync(__dirname + '/lib/modules').forEach(function(filename){

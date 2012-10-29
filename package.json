@@ -5,6 +5,7 @@
     "dependencies":{
         "pomelo-schedule": ">=0.0.2", 
         "pomelo-logger": ">=0.0.2", 
+        "pomelo-monitor": ">=0.0.1", 
         "socket.io": ">=0.0.1", 
         "socket.io-client": ">=0.0.1", 
         "v8-profiler": ">=0.0.1"

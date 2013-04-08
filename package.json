@@ -1,21 +1,20 @@
 {
-    "name":"pomelo-admin",
-    "version":"0.1.1",
-    "private":false,
-    "dependencies":{
+    "name": "pomelo-admin",
+    "version": "0.1.2",
+    "private": false,
+    "dependencies": {
         "pomelo-schedule": "0.3.4",
         "pomelo-logger": "0.0.2",
         "pomelo-monitor": "0.3.7",
         "socket.io": "0.9.13",
         "socket.io-client": "0.9.11"
     },
-    "devDependencies":{
-        "should":">=0.0.1",
-        "mocha":">=0.0.1",
-        "flow":">=0.0.1"
+    "devDependencies": {
+        "should": ">=0.0.1",
+        "mocha": ">=0.0.1",
+        "flow": ">=0.0.1"
     },
-    "optionalDependencies":{
+    "optionalDependencies": {
         "v8-profiler": "3.6.2-1"
     }
 }
-

@@ -62,13 +62,13 @@ The relations of the components is as below:
 
 ##Usage
 
-```
+```javascript
 var admin = require("pomelo-admin");
 ```
 
 Create a consoleService instance in master process.
 
-```
+```javascript
 var masterConsole = admin.createMasterConsole({  
     port: masterPort  
 });  
@@ -76,13 +76,13 @@ var masterConsole = admin.createMasterConsole({
 
 Register an admin module.
 
-```
+```javascript
 masterConsole.register(moduleId, module);  
 ```
 
 Start masterConsole.
 
-```
+```javascript
 masterConsole.start(function(err) {  
   // start servers  
 });  
@@ -90,7 +90,7 @@ masterConsole.start(function(err) {
 
 Create a consoleService instance in monitor process. 
 
-```
+```javascript
 var monitorConsole = admin.createMonitorConsole({  
     id: serverId,  
     type: serverType,  
@@ -106,7 +106,7 @@ Developers can customize modules to collect and export additional status as they
 
 ###Simple example  
 
-```
+```javascript
 var Module = function(app, opts) {
   opts = opts || {};
   this.type = opts.type || 'pull';  // pull or push 
@@ -150,7 +150,7 @@ Module.prototype.clientHandler = function(agent, msg, cb) {
 you must register your customized modules to pomelo to make it work.  
 write in app.js which is in your project's root directory  
 
-```
+```javascript
 app.configure('production|development', function() {
   app.registerAdmin('helloPomelo',new helloPomelo());
 });
@@ -160,7 +160,7 @@ app.configure('production|development', function() {
 
 `pomelo-admin` provides a series of useful system modules by default. But most of them are turned off by default. Add a simple line of code in `app.js` as below to enable them.
 
-```
+```javascript
 app.configure('development', function() {
   // enable the system monitor modules
   app.enable('systemMonitor');

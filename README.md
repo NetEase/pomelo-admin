@@ -43,7 +43,7 @@ masterConsole.register(moduleId, module);
 start masterConsole and registered modules  
 ```
 masterConsole.start(function(err) {  
-    // start servers  
+  // start servers  
 });  
 ```
 
@@ -66,7 +66,7 @@ monitorConsole.register(moduleId, module);
 start monitorConsole and registered modules  
 ```
 monitorConsole.start(function(err) {  
-    // start modules  
+  // start modules  
 });  
 ```
 
@@ -87,17 +87,17 @@ module.exports = Module;
 
 Module.prototype.monitorHandler = function(agent, msg) {
   var word = agent.id + ' hello pomelo';
-        //notify admin messages to master
+  // notify admin messages to master
   agent.notify(Module.moduleId, {serverId: agent.id, body: word});
 };
 
 Module.prototype.masterHandler = function(agent, msg) {
-        //if no message, then notify all monitors to fetch datas
+  // if no message, then notify all monitors to fetch datas
   if(!msg) {
     agent.notifyAll(Module.moduleId);
     return;
   }
-        //collect data from monitor
+  // collect data from monitor
   var data = agent.get(Module.moduleId);
   if(!data) {
     data = {};
@@ -108,8 +108,8 @@ Module.prototype.masterHandler = function(agent, msg) {
 };
 
 Module.prototype.clientHandler = function(agent, msg, cb) {
-        //deal with client request,directly return data cached in master
-        cb(null, agent.get(Module.moduleId) || {});
+  // deal with client request,directly return data cached in master
+  cb(null, agent.get(Module.moduleId) || {});
 };
 ```
 
@@ -119,7 +119,7 @@ write in app.js which is in your project's root directory
 
 ```
 app.configure('production|development', function() {
-    app.registerAdmin('helloPomelo',new helloPomelo());
+  app.registerAdmin('helloPomelo',new helloPomelo());
 });
 ```
 
@@ -129,7 +129,7 @@ write in app.js which is in your project's root directory
 
 ```
 app.configure('development', function() {
-    // enable the system monitor modules
-    app.enable('systemMonitor');
+  // enable the system monitor modules
+  app.enable('systemMonitor');
 });
 ```

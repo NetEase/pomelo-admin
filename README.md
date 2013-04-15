@@ -1,53 +1,95 @@
-# pomelo-admin
-pomelo-admin is an admin console library for [pomelo](https://github.com/NetEase/pomelo). it registers admin modules and you can monitor your server cluster .  
+#pomelo-admin
+
+`pomelo-admin` is an admin console library for [pomelo](https://github.com/NetEase/pomelo). It provides the a series of utilities to monitor the `pomelo` server clusters.
+
 ##Installation
+
 ```
 npm install pomelo-admin
 ```
-##Roles in pomelo-admin : master,monitor,client
-+ master: master server , listen on port and wait for clients and monitors to connect. it maintains all the registered connections,message routes,and cache server clusters' states  
-+ monitor: any server which needs to be monitored (include master server). it collects moniotered messages and push or pull to the master server  
-+ client: any client which wants to get admin states from server cluster  
 
+##Basic conception
 
-###Message types among roles : request and notify
-+ request: messages sended with callback
-+ notify: messages sended without callback
+###Process roles
 
-###ConsoleService  
-it is the entry path for admin modules,master and monitor server both need to create a consoleService. every monitored server registeres its module to consoleService.consoleService creates base agents based on server type instance and is responsible for agents' lifecycle  
-###masterAgent  
-run on the master server and is responsible for base network communications  
-###monitorAgent  
-run on the monitor server , connect to the masterAgent and collects monitor states  
-###module  
-admin monitor module,implements admin logic,defines three callback interfaces, which corresponds to the logic of master,monitor and client  
+There are three process roles in `pomelo-admin`: master, monitor and client.
 
-####Usage  
++ master - the master server process, collects and maintains all the client and monitor status and exports the cluster status for the clients.  
+
++ monitor - monitor proxy, in every server process which needs to be monitored. It should be started during the process starts and registers itself to the master server and reports the monitored process status to the master. 
+
++ client - `pomelo-admin` client process that fetches the status from master server, such as [pomelo-admin-web](https://github.com/NetEase/pomelo-admin-web).
+
+###Message types
+
+There are two message types of the communication between processes.
+
++ request - bidirectional message that cooperated with response.
+
++ notify - unidirectional message.
+
+##Components
+
+###ConsoleService 
+
+Main service of `pomelo-admin` that runs in both master and monitor processes. It maintains the master agent or monitor agent for the process, loads the registed modules and provides the messages routing service for the messages from other processes.
+
+###MasterAgent  
+
+`pomelo-admin` agent that runs on the master process to provide the basic network communication and protocol encoding and decoding.
+
+###MonitorAgent  
+
+`pomelo-admin` agent that runs on the monitor process to provide the basic network communication and protocol encoding and decoding. 
+
+###Module  
+ 
+Module is the place to implement the monitor logic, such as process status collecting. Developer can register modules in `pomelo-admin` to customize all kinds of system monitors.
+
+There are three optional callback functions in each module.
+
+* function masterHandler(agent, msg, cb) - callback in master process to process a message from monitor process or a timer event in master process.
+
+* function masterHandler(agent, msg, cb) - callback in monitor process to process a message from master process or a timer event in monitor process.
+
+* function masterHandler(agent, msg, cb) - callback in master process to process a message from client.
+
+The relations of the components is as below:
+
+<center>
+![pomelo-admin-arch](http://pomelo.netease.com/resource/documentImage/pomelo-admin-arch.png)
+</center>
+
+##Usage
+
 ```
 var admin = require("pomelo-admin");
 ```
 
-on master server create masterConsole  
+Create a consoleService instance in master process.
+
 ```
 var masterConsole = admin.createMasterConsole({  
     port: masterPort  
 });  
 ```
 
-register admin modules in master  
+Register an admin module.
+
 ```
 masterConsole.register(moduleId, module);  
 ```
 
-start masterConsole and registered modules  
+Start masterConsole.
+
 ```
 masterConsole.start(function(err) {  
   // start servers  
 });  
 ```
 
-on monitor server create monitorConsole  
+Create a consoleService instance in monitor process. 
+
 ```
 var monitorConsole = admin.createMonitorConsole({  
     id: serverId,  
@@ -57,23 +99,13 @@ var monitorConsole = admin.createMonitorConsole({
     info: serverInfo  
 }); 
 ```
- 
-register admin modules in monitor  
-```
-monitorConsole.register(moduleId, module);   
-```
- 
-start monitorConsole and registered modules  
-```
-monitorConsole.start(function(err) {  
-  // start modules  
-});  
-```
 
 ##Customized modules  
-you can define your user-defined modules for your specific needs.  
 
-###Simple module example  
+Developers can customize modules to collect and export additional status as they need.
+
+###Simple example  
+
 ```
 var Module = function(app, opts) {
   opts = opts || {};
@@ -113,7 +145,8 @@ Module.prototype.clientHandler = function(agent, msg, cb) {
 };
 ```
 
-###Register your modules
+###Register customized modules
+
 you must register your customized modules to pomelo to make it work.  
 write in app.js which is in your project's root directory  
 
@@ -124,8 +157,8 @@ app.configure('production|development', function() {
 ```
 
 ###Notes  
-+ pomelo-admin has supplied some useful system modules to monitor your server clusters,to use it , you just need to enable it in your projects.  
-write in app.js which is in your project's root directory  
+
+`pomelo-admin` provides a series of useful system modules by default. But most of them are turned off by default. Add a simple line of code in `app.js` as below to enable them.
 
 ```
 app.configure('development', function() {

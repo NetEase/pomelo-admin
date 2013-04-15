@@ -1,6 +1,6 @@
 {
     "name": "pomelo-admin",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "private": false,
     "dependencies": {
         "pomelo-schedule": "0.3.4",

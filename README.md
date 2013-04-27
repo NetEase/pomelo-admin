@@ -50,9 +50,9 @@ There are three optional callback functions in each module.
 
 * function masterHandler(agent, msg, cb) - callback in master process to process a message from monitor process or a timer event in master process.
 
-* function masterHandler(agent, msg, cb) - callback in monitor process to process a message from master process or a timer event in monitor process.
+* function monitorHandler(agent, msg, cb) - callback in monitor process to process a message from master process or a timer event in monitor process.
 
-* function masterHandler(agent, msg, cb) - callback in master process to process a message from client.
+* function clientHandler(agent, msg, cb) - callback in master process to process a message from client.
 
 The relations of the components is as below:
 

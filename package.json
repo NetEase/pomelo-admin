@@ -1,6 +1,6 @@
 {
     "name": "pomelo-admin",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "private": false,
     "dependencies": {
         "pomelo-schedule": "0.3.4",
@@ -13,8 +13,5 @@
         "should": ">=0.0.1",
         "mocha": ">=0.0.1",
         "flow": ">=0.0.1"
-    },
-    "optionalDependencies": {
-        "v8-profiler": "3.6.2-1"
     }
 }

@@ -14,5 +14,8 @@
         "should": ">=0.0.1",
         "mocha": ">=0.0.1",
         "flow": ">=0.0.1"
+    },
+    "optionalDependencies": {
+        "v8-profiler": "3.6.2-1"
     }
 }

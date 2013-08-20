@@ -156,6 +156,100 @@ app.configure('production|development', function() {
 });
 ```
 
+###User level control  
+pomelo-admin defines user level for admin client to login master server in this schema  
+```javascript
+{
+    "id": "user-1",
+    "username": "admin",
+    "password": "admin",
+    "level": 1
+}
+```
+
+**level** defines the user admin level  
+level 1 means the user has the admin permission, this user can do anything  
+other level user will have limited permission  
+currently **add**, **stop**, **kill** will require level 1 permission  
+
+**note**: by default you should provide adminUser.json file under the **config** dir  
+adminUser.json
+```
+[{
+    "id": "user-1",
+    "username": "admin",
+    "password": "admin",
+    "level": 1
+}, {
+    "id": "user-2",
+    "username": "monitor",
+    "password": "monitor",
+    "level": 2
+},{
+    "id": "user-3",
+    "username": "test",
+    "password": "test",
+    "level": 2
+}
+]
+```
+
+##Self-defined auth 
+pomelo-admin provides a simple auth function in [pomelo-admin auth]()  
+developers can provide self-defined auth in pomelo by  
+in master server
+```javascript
+app.set('adminAuthUser', function(msg, cb){
+  if(auth success) {
+    cb(user);
+  } else {
+    cb(null);
+  }
+})
+```
+
+###Server master auth  
+server connect to master with authorization  
+pomelo-admin provides a simple auth function in [pomelo-admin auth]()  
+developers can provide self-defined auth in pomelo by  
+in master server
+```javascript
+app.set('adminAuthServerMaster', function(msg, cb){
+  if(auth success) {
+    cb('ok');
+  } else {
+    cb('bad');
+  }
+})
+```
+
+in monitor server
+```javascript
+app.set('adminAuthServerMonitor', function(msg, cb){
+  if(auth success) {
+    cb('ok');
+  } else {
+    cb('bad');
+  }
+})
+```
+
+**note**: by default you should provide adminServer.json file under the **config** dir  
+adminServer.json
+```
+[{
+    "type": "connector",
+    "token": "agarxhqb98rpajloaxn34ga8xrunpagkjwlaw3ruxnpaagl29w4rxn"
+}, {
+    "type": "chat",
+    "token": "agarxhqb98rpajloaxn34ga8xrunpagkjwlaw3ruxnpaagl29w4rxn"
+},{
+    "type": "gate",
+    "token": "agarxhqb98rpajloaxn34ga8xrunpagkjwlaw3ruxnpaagl29w4rxn"
+}
+]
+```
+
 ###Notes  
 
 `pomelo-admin` provides a series of useful system modules by default. But most of them are turned off by default. Add a simple line of code in `app.js` as below to enable them.

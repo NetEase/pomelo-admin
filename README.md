@@ -18,7 +18,7 @@ There are three process roles in `pomelo-admin`: master, monitor and client.
 
 + monitor - monitor proxy, in every server process which needs to be monitored. It should be started during the process starts and registers itself to the master server and reports the monitored process status to the master. 
 
-+ client - `pomelo-admin` client process that fetches the status from master server, such as [pomelo-admin-web](https://github.com/NetEase/pomelo-admin-web).
++ client - `pomelo-admin` client process that fetches the status from master server, such as [pomelo-admin-web](https://github.com/NetEase/pomelo-admin-web) and [pomelo-cli](https://github.com/NetEase/pomelo-cli).
 
 ###Message types
 

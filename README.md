@@ -156,7 +156,7 @@ app.configure('production|development', function() {
 });
 ```
 
-###User level control  
+##User level control  
 pomelo-admin defines user level for admin client to login master server in this schema  
 ```javascript
 {
@@ -208,7 +208,7 @@ app.set('adminAuthUser', function(msg, cb){
 })
 ```
 
-###Server master auth  
+##Server master auth  
 server connect to master with authorization  
 pomelo-admin provides a simple auth function in [pomelo-admin auth](https://github.com/NetEase/pomelo-admin/blob/master/lib/util/utils.js#L117)  
 developers can provide self-defined auth in pomelo by  

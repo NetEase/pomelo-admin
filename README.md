@@ -195,7 +195,7 @@ adminUser.json
 ```
 
 ##Self-defined auth 
-pomelo-admin provides a simple auth function in [pomelo-admin auth]()  
+pomelo-admin provides a simple auth function in [pomelo-admin auth](https://github.com/NetEase/pomelo-admin/blob/master/lib/util/utils.js#L78)  
 developers can provide self-defined auth in pomelo by  
 in master server
 ```javascript
@@ -210,7 +210,7 @@ app.set('adminAuthUser', function(msg, cb){
 
 ###Server master auth  
 server connect to master with authorization  
-pomelo-admin provides a simple auth function in [pomelo-admin auth]()  
+pomelo-admin provides a simple auth function in [pomelo-admin auth](https://github.com/NetEase/pomelo-admin/blob/master/lib/util/utils.js#L117)  
 developers can provide self-defined auth in pomelo by  
 in master server
 ```javascript

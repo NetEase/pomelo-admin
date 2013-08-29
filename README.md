@@ -250,6 +250,9 @@ adminServer.json
 ]
 ```
 
+**type** is the serverType, **token** is a string you can genrate by yourself  
+when using in pomelo, you should fill all your servers with type:token  
+
 ###Notes  
 
 `pomelo-admin` provides a series of useful system modules by default. But most of them are turned off by default. Add a simple line of code in `app.js` as below to enable them.

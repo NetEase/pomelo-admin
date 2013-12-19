@@ -4,7 +4,7 @@
     "private": false,
     "dependencies": {
         "pomelo-schedule": "0.3.4",
-        "pomelo-logger": "0.1.1",
+        "pomelo-logger": "0.1.2",
         "pomelo-monitor": "0.3.7",
         "socket.io": "0.9.16",
         "socket.io-client": "0.9.16",

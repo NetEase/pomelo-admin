@@ -1,9 +1,9 @@
 {
     "name": "pomelo-admin",
-    "version": "0.2.8",
+    "version": "0.2.9",
     "private": false,
     "dependencies": {
-        "pomelo-schedule": "0.3.4",
+        "pomelo-scheduler": "0.3.8",
         "pomelo-logger": "0.1.2",
         "pomelo-monitor": "0.3.7",
         "socket.io": "0.9.16",

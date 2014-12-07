@@ -11,7 +11,7 @@
     },
     "peerDependencies" : {
         "pomelo-logger" : "0.1.6"
-    }
+    },
     "devDependencies": {
         "should": ">=0.0.1",
         "mocha": ">=0.0.1",

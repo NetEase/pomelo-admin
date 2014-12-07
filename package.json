@@ -4,12 +4,14 @@
     "private": false,
     "dependencies": {
         "pomelo-scheduler": "0.3.8",
-        "pomelo-logger": "0.1.2",
         "pomelo-monitor": "0.3.7",
         "socket.io": "0.9.16",
         "socket.io-client": "0.9.16",
         "heapdump": "0.2.9"
     },
+    "peerDependencies" : {
+        "pomelo-logger" : "0.1.6"
+    }
     "devDependencies": {
         "should": ">=0.0.1",
         "mocha": ">=0.0.1",

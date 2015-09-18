@@ -1,13 +1,13 @@
 {
     "name": "pomelo-admin",
-    "version": "0.4.4",
+    "version": "0.4.5",
     "private": false,
     "dependencies": {
         "pomelo-scheduler": "0.3.8",
         "pomelo-monitor": "0.3.7",
         "socket.io": "0.9.16",
         "socket.io-client": "0.9.16",
-        "heapdump": "0.2.9"
+        "heapdump": "0.3.7"
     },
     "peerDependencies" : {
         "pomelo-logger" : "0.1.7"

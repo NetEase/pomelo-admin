@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": false,
     "dependencies": {
-        "mqtt-connection": "3.0.0",
+        "mqtt-connection": "3.2.0",
         "pomelo-scheduler": "0.3.8",
         "pomelo-monitor": "0.3.7"
     },

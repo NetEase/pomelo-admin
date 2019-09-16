@@ -1,4 +1,4 @@
-#pomelo-admin
+# pomelo-admin
 
 `pomelo-admin` is an admin console library for [pomelo](https://github.com/NetEase/pomelo). It provides the a series of utilities to monitor the `pomelo` server clusters.
 
@@ -8,9 +8,9 @@
 npm install pomelo-admin
 ```
 
-##Basic conception
+## Basic conception
 
-###Process roles
+### Process roles
 
 There are three process roles in `pomelo-admin`: master, monitor and client.
 
@@ -20,7 +20,7 @@ There are three process roles in `pomelo-admin`: master, monitor and client.
 
 + client - `pomelo-admin` client process that fetches the status from master server, such as [pomelo-admin-web](https://github.com/NetEase/pomelo-admin-web) and [pomelo-cli](https://github.com/NetEase/pomelo-cli).
 
-###Message types
+### Message types
 
 There are two message types of the communication between processes.
 
@@ -34,15 +34,15 @@ There are two message types of the communication between processes.
 
 Main service of `pomelo-admin` that runs in both master and monitor processes. It maintains the master agent or monitor agent for the process, loads the registed modules and provides the messages routing service for the messages from other processes.
 
-###MasterAgent  
+### MasterAgent  
 
 `pomelo-admin` agent that runs on the master process to provide the basic network communication and protocol encoding and decoding.
 
-###MonitorAgent  
+### MonitorAgent  
 
 `pomelo-admin` agent that runs on the monitor process to provide the basic network communication and protocol encoding and decoding. 
 
-###Module  
+### Module  
  
 Module is the place to implement the monitor logic, such as process status collecting. Developer can register modules in `pomelo-admin` to customize all kinds of system monitors.
 
@@ -60,7 +60,7 @@ The relations of the components is as below:
 ![pomelo-admin-arch](http://pomelo.netease.com/resource/documentImage/pomelo-admin-arch.png)
 </center>
 
-##Usage
+## Usage
 
 ```javascript
 var admin = require("pomelo-admin");
@@ -100,11 +100,11 @@ var monitorConsole = admin.createMonitorConsole({
 }); 
 ```
 
-##Customized modules  
+## Customized modules  
 
 Developers can customize modules to collect and export additional status as they need.
 
-###Simple example  
+### Simple example  
 
 ```javascript
 var Module = function(app, opts) {
@@ -145,7 +145,7 @@ Module.prototype.clientHandler = function(agent, msg, cb) {
 };
 ```
 
-###Register customized modules
+### Register customized modules
 
 you must register your customized modules to pomelo to make it work.  
 write in app.js which is in your project's root directory  
@@ -156,7 +156,7 @@ app.configure('production|development', function() {
 });
 ```
 
-##User level control  
+## User level control  
 pomelo-admin defines user level for admin client to login master server in this schema  
 ```javascript
 {
@@ -194,7 +194,7 @@ adminUser.json
 ]
 ```
 
-##Self-defined auth 
+## Self-defined auth 
 pomelo-admin provides a simple auth function in [pomelo-admin auth](https://github.com/NetEase/pomelo-admin/blob/master/lib/util/utils.js#L78)  
 developers can provide self-defined auth in pomelo by  
 in master server
@@ -208,7 +208,7 @@ app.set('adminAuthUser', function(msg, cb){
 })
 ```
 
-##Server master auth  
+## Server master auth  
 server connect to master with authorization  
 pomelo-admin provides a simple auth function in [pomelo-admin auth](https://github.com/NetEase/pomelo-admin/blob/master/lib/util/utils.js#L117)  
 developers can provide self-defined auth in pomelo by  
@@ -253,7 +253,7 @@ adminServer.json
 **type** is the serverType, **token** is a string you can genrate by yourself  
 when using in pomelo, you should fill all your servers with type:token  
 
-###Notes  
+### Notes  
 
 `pomelo-admin` provides a series of useful system modules by default. But most of them are turned off by default. Add a simple line of code in `app.js` as below to enable them.
 
